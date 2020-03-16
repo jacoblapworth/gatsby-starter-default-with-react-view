@@ -1,9 +1,12 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import { View, PropTypes } from 'react-view';
+
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
+import Button from "../components/button"
 
 const IndexPage = () => (
   <Layout>
@@ -15,6 +18,34 @@ const IndexPage = () => (
       <Image />
     </div>
     <Link to="/page-2/">Go to page 2</Link>
+    <View
+      componentName="Button"
+      props={{
+        children: {
+          value: 'Hello',
+          type: PropTypes.ReactNode,
+          description: 'Visible label.',
+        },
+        onClick: {
+          value: '() => alert("click")',
+          type: PropTypes.Function,
+          description: 'Function called when button is clicked.',
+        },
+        disabled: {
+          value: false,
+          type: PropTypes.Boolean,
+          description: 'Indicates that the button is disabled',
+        },
+      }}
+      scope={{
+        Button,
+      }}
+      imports={{
+        '../components/button': {
+          named: ['Button'],
+        },
+      }}
+    />
   </Layout>
 )
 
